@@ -32,46 +32,46 @@ Basic usage (pin to a released tag, e.g., `v1`):
 
 ```yaml
 steps:
-	- uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-	- name: Set up Poetry env
-		uses: SamuelJennings/cached-poetry-action@v1
-		with:
-			python-version: '3.11'
-			poetry-version: '1.8.2'
+    - name: Set up Poetry env
+        uses: SamuelJennings/cached-poetry-action@v1
+        with:
+            python-version: '3.11'
+            poetry-version: '1.8.2'
 
-	- name: Run tests
-		run: poetry run pytest
+     - name: Run tests
+        run: poetry run pytest
 ```
 
 Matrix example:
 
 ```yaml
 strategy:
-	matrix:
-		python-version: ['3.10', '3.11', '3.12']
+    matrix:
+        python-version: ['3.10', '3.11', '3.12']
 
 steps:
-	- uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-	- name: Set up Poetry env
-		uses: SamuelJennings/cached-poetry-action@v1
-		with:
-			python-version: ${{ matrix.python-version }}
-			poetry-version: '1.8.2'
+    - name: Set up Poetry env
+        uses: SamuelJennings/cached-poetry-action@v1
+        with:
+            python-version: ${{ matrix.python-version }}
+            poetry-version: '1.8.2'
 
-	- run: poetry run pytest -q
+    - run: poetry run pytest -q
 ```
 
 Docs build example:
 
 ```yaml
 steps:
-	- uses: actions/checkout@v4
-	- uses: SamuelJennings/cached-poetry-action@v1
-		with:
-			python-version: '3.11'
-	- run: poetry run sphinx-build -E -b html docs docs/_build
+    - uses: actions/checkout@v4
+    - uses: SamuelJennings/cached-poetry-action@v1
+        with:
+            python-version: '3.11'
+    - run: poetry run sphinx-build -E -b html docs docs/_build
 ```
 
 ## Caching details
@@ -96,7 +96,7 @@ Notes:
 - Maintain a moving major tag like `v1` that points to the latest compatible v1.x release
 - Example:
 	- `git tag -a v1.0.0 -m "Initial release" && git push origin v1.0.0`
-	- `git tag -fa v1 v1.0.0 -m "Update v1" && git push origin v1 --force`
+    - `git tag -fa v1 v1.0.0 -m "Update v1" && git push origin v1 --force`
 
 ## Troubleshooting
 
